@@ -1,0 +1,41 @@
+{
+    "AWSEBDockerrunversion": 2,
+    "containerDefinitions": [
+        {
+            "name": "client",
+            "image": "thewannabesavant/multi-client",
+            "hostname": "client",
+            "memory": 128,
+            "essential": false
+        },
+        {
+            "name": "nginx",
+            "image": "thewannabesavant/multi-nginx",
+            "hostname": "nginx",
+            "memory": 128,
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 80
+                }
+            ],
+            "links": ["client", "server"]
+        },
+        {
+            "name": "server",
+            "image": "thewannabesavant/multi-server",
+            "hostname": "api",
+            "memory": 128,
+            "essential": false
+        },
+        {
+            "name": "worker",
+            "image": "thewannabesavant/multi-worker",
+            "hostname": "worker",
+            "memory": 128,
+            "essential": false
+        }
+    ]
+        
+}
